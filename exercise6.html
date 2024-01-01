@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coin-flip game</title>
+</head>
+<body>
+  <button onclick="
+    function1('Heads');">
+    Heads
+  </button>
+  <button onclick = "function1('Tails');">
+    Tail
+  </button>
+  <button onclick = "score.wins = 0
+  score.loses = 0">
+    Reset Score
+  </button>
+  <script>
+
+    let score = JSON.parse(localStorage.getItem('score')) || {
+      wins: 0,
+      loses: 0
+    };
+
+    let randomNum= Math.random();
+    console.log(randomNum);
+    let guess =" ";
+    
+    function playGame(){
+    let outcome =' ';
+    if(randomNum<0.5){
+     outcome = "Heads";
+    }
+    else{
+     outcome = "Tails";
+    }
+    return outcome;
+  }
+  function function1(guess){
+    const outcome = playGame();
+    let result=" ";
+    if(guess === "Heads"){
+      if(outcome === "Heads"){
+        result = "You Win";
+      }
+      else{
+        result = "You lose";
+      }
+    }
+    if(guess === "Tails"){
+      if(outcome === "Tails"){
+        result = "You Win";
+      }
+      else{
+        result = "You lose";
+      }
+    }
+    if(result === "You Win"){
+      score.wins+=1;
+    }
+    else if(result === "You lose"){
+      score.loses+=1;
+    }
+    localStorage.setItem("score",JSON.stringify(score));
+  alert(`You picked ${guess} outcome is ${outcome} Result ${result}
+   Wins: ${score.wins} Loses: ${score.loses}`);
+  }
+  //console.log(result);
+  //playGame("Heads");
+ // console.log(guess===result?"You Win":"You lose");
+   /* if(randomNum<0.5){
+      console.log("Heads");
+    }
+    else{
+      console.log("Tails");
+    }
+    */
+   /*if(guess === result){
+    console.log("You Win");
+   }
+   else{
+    console.log("You lose");
+   }
+   */
+  //using ternary operator
+  </script>
+</body>
+</html>
